@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import demo.UserPojo;
+
 /**
  * transform one list to another kind list
  */
