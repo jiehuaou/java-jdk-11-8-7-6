@@ -12,7 +12,7 @@ public class StreamCombineStream {
         List<Purchase> purchases = getPurchase();
         List<Customer> data = getCustomer().stream()
                 .map(customer->mapFromPurchase(customer, purchases))
-                .filter(customer -> customer.getTotalSpendMoney()>0.0)
+                .filter(customer -> customer.getTotalSpendMoney()>0.0)  // Intermediate operations are always lazy.
                 .collect(Collectors.toList());
 
         data.forEach(System.out::println);
