@@ -11,16 +11,20 @@ public class StreamCombineStream {
     public static void main(String[] args) {
         List<Purchase> purchases = getPurchase();
         List<Customer> data = getCustomer().stream()
-                .map(customer->mapFromOther(customer, purchases))
+                .map(customer->mapFromPurchase(customer, purchases))
                 .filter(customer -> customer.getTotalSpendMoney()>0.0)
                 .collect(Collectors.toList());
 
         data.forEach(System.out::println);
     }
 
-    private static Customer mapFromOther(Customer customer, final List<Purchase> purchases){
+    /**
+     * sum-up all spending from stream,
+     */
+    private static Customer mapFromPurchase(Customer customer, final List<Purchase> purchases){
         purchases.stream()
                 .filter(purchase->purchase.getId()==customer.getId())
+                .peek(purchase -> System.out.printf("found %.2f on id[%d] \n", purchase.getSpendMoney(), purchase.getId()))
                 .forEach(purchase->customer.combineSpendMoney(purchase.getSpendMoney()));
         return customer;
     }
