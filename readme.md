@@ -74,7 +74,7 @@ if (!lock.validate(stamp)) {
 ```
 
 another example
-```
+```java
 	void moveIfAtOrigin(double newX, double newY) { // upgrade
       // Could instead start with optimistic, not read mode
       long stamp = sl.readLock();
