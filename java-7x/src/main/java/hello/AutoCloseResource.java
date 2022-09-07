@@ -2,6 +2,9 @@ package hello;
 
 import java.io.*;
 
+/**
+ * AutoCloseable object is called automatically when exiting a try-with-resources block for which the object has been declared in the resource specification header. This construction ensures prompt release, avoiding resource exhaustion exceptions
+ */
 public class AutoCloseResource implements AutoCloseable{
     @Override
     public void close() throws Exception {
