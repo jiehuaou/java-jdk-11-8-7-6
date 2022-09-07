@@ -5,6 +5,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.StampedLock;
 
+/**
+ * Reentrant locks allow programmers to acquire multiple read locks as long as there are no write locks.
+It was later discovered that if used carelessly - reentrant RW locks can starve threads writing to the lock under load
+- This can cause serious performance issues.
+ */
 public class StampedLockTest {
     static StampedLock lock = new StampedLock();
 
