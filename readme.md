@@ -97,3 +97,70 @@ void moveIfAtOrigin(double newX, double newY) { // upgrade
   }
 }
  ```
+
+## Java Volatile Keyword
+
+### Full volatile Visibility Guarantee
+
+If Thread A writes to a volatile variable and Thread B subsequently reads the same volatile variable, then all variables visible to Thread A before writing the volatile variable, will also be visible to Thread B after it has read the volatile variable.
+
+```java
+public class MyClass {
+    private int years;
+    private int months
+    private volatile int days;
+    
+    // invoke by thread B
+    public int totalDays() {
+        int total = this.days;
+        total += months * 30;
+        total += years * 365;
+        return total;
+    }
+
+    // invoke by thread A
+    public void update(int years, int months, int days){
+        this.years  = years;
+        this.months = months;
+        this.days   = days;
+    }
+}
+```
+
+when Thread A write value to **days**, the values of years and months are also written to main memory.
+
+When Thread B read the value of **days**, the values of months and years are also read into main memory. Therefore you are guaranteed to see the latest values of **days, months and years** with the above read sequence.
+
+### Java volatile Happens-Before Guarantee
+
+In particular, if all Threads share the following class variables:
+```java
+class MyClass {
+  private String s = "running";
+  private volatile boolean b = false;
+}
+```
+
+In your case, you have the following events:
+
+* Thread 1 writes "**done**" to s
+* Thread 1 writes **true** to b
+* Thread 2 reads from b
+* Thread 2 reads from s
+
+And the following rules come into play:
+
+* "If x and y are actions of the same thread and x comes before y in program order, then hb(x, y)." (the program order rule)
+* "A write to a volatile field (§8.3.1.4) happens-before every subsequent read of that field." (the volatile rule)
+
+The following **happens-before** relationships therefore exist:
+
+* Thread 1 writes to s **happens before** Thread 1 writes to b (program order rule)
+* Thread 1 writes to b **happens before** Thread 2 reads from b (volatile rule)
+* Thread 2 reads from b **happens before** Thread 2 reads from s (program order rule)
+* If you follow that chain, you can see that as a result:
+
+Thread 1 writes to s **happens before** Thread 2 reads from s
+
+finally Thread 2 print s with "**done**"
+
