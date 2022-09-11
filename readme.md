@@ -164,3 +164,11 @@ Thread 1 writes to s **happens before** Thread 2 reads from s
 
 finally Thread 2 print s with "**done**"
 
+### *When is volatile Enough?*
+
+In case **only one thread reads and writes** the value of a volatile variable and **other threads only read** the variable, then the reading threads are guaranteed to see the latest value written to the volatile variable. 
+
+### *When is volatile not Enough?*
+
+if two threads are both reading and writing to a shared variable, then using the volatile keyword for that is not enough. You need to use a synchronized in that case to guarantee that the reading and writing of the variable is atomic. Reading or writing a **volatile variable does not block threads** reading or writing. 
+
