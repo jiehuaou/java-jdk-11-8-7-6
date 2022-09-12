@@ -172,3 +172,50 @@ In case **only one thread reads and writes** the value of a volatile variable an
 
 if two threads are both reading and writing to a shared variable, then using the volatile keyword for that is not enough. You need to use a synchronized in that case to guarantee that the reading and writing of the variable is atomic. Reading or writing a **volatile variable does not block threads** reading or writing. 
 
+### Java Synchronized Entry Visibility Guarantee
+
+When a thread enters a synchronized block, all variables visible to the thread are refreshed from the main memory.
+
+### Java Synchronized Exit Visibility Guarantee
+
+When a thread exits a synchronized block, all variables visible to the thread are written back to the main memory.
+
+### Java Synchronized Happens Before Guarantee
+
+Java **synchronized** blocks provide two *happens-before* guarantees: 
+
+* **One guarantee** related to the beginning of a synchronized block,  
+* **another guarantee** related to the end of a synchronized block.
+
+### Java Synchronized Block Beginning Happens Before Guarantee
+
+The beginning of a Java synchronized block provides the visibility guarantee, that when a thread enters a synchronized block all variables visible to the thread will be read from the main memory.
+
+```java
+public void get(Values v) {
+        synchronized(this) {
+            v.valC = this.valC;
+        }
+        v.valB = this.valB;
+        v.valA = this.valA;
+    }
+```
+
+The synchronized block at the beginning of the method will guarantee that all of the variables **this.valC, this.valB and this.valA** are refreshed (read in) from the main memory.
+
+### Java Synchronized Block End Happens Before Guarantee
+
+The end of a synchronized block provides the visibility guarantee that all changed variables will be written back to the main memory when the thread exits the synchronized block.
+
+```java
+public void set(Values v) {
+        this.valA = v.valA;
+        this.valB = v.valB;
+        synchronized(this) {
+            this.valC = v.valC;
+        }
+    }
+```
+
+As you can see, the synchronized block at the end of the method will guarantee that all of the changed variables this.valA, this.valB and this.valC will be written back to (flushed) to main memory when the thread calling set() exits the synchronized blocks.
+
