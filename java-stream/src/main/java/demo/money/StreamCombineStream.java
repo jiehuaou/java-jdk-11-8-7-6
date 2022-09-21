@@ -19,12 +19,12 @@ public class StreamCombineStream {
     }
 
     /**
-     * sum-up all spending from stream,
+     * sum-up all spending from Purchase stream, into one Customer
      */
     private static Customer mapFromPurchase(Customer customer, final List<Purchase> purchases){
         purchases.stream()
                 .filter(purchase->purchase.getId()==customer.getId())
-                .peek(purchase -> System.out.printf("found %.2f on id[%d] \n", purchase.getSpendMoney(), purchase.getId()))
+                .peek(purchase -> System.out.printf("found SpendMoney $ %.2f on id[%d] \n", purchase.getSpendMoney(), purchase.getId()))
                 .forEach(purchase->customer.combineSpendMoney(purchase.getSpendMoney()));
         return customer;
     }
