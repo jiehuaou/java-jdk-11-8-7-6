@@ -23,7 +23,7 @@ public class WordCounting {
                 w->w,  // lambda to map key
                 w->1,  // lambda to map value
                 (a,b)->a+b  // lambda to merge value when same key
-                , TreeMap::new  // optional, for sorting
+                , TreeMap::new  // optional, mapFactory
         ));
 
         System.out.println(list);
