@@ -30,7 +30,9 @@ public class WordCounting {
     }
 
     /**
-     * use groupingBy( e->key, e->1, reducing(...)) and reducing(0, e->1, merge(a,b)->a+b )
+     * use groupingBy( e->key, reducing(...))
+     *                                   \
+     *                                   reducing(0, e->1, merge(a,b)->a+b )
      */
     @Test
     public void sample2() {
@@ -68,6 +70,11 @@ public class WordCounting {
         System.out.println(list);
     }
 
+    /**
+     * use groupingBy( e->key, reducing(...))
+     *                            \
+     *                           mapping( e->1, merge(a,b)->a+b )
+     */
     @Test
     public void sample4() {
         List<String> ls = Arrays.asList("abc", "hello", "hello", "world");
