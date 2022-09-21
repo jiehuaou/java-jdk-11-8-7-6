@@ -11,8 +11,10 @@
 
         <modules>
             <module>java-7x</module>
-            <module>module2</module>
-            <module>module3</module>
-            <module>module4</module>
+            <module>java-8x</module>
+            <module>java-executor-service</module>
+            <module>java-regex</module>
+            <module>java-stream</module>
+            <module>java-proxy</module>
         </modules>
 </project>

@@ -1,6 +1,7 @@
 package demo;
 
-import org.junit.Test;
+
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class FlatMapTest {
         String[][] dataArray = new String[][]{{"a", "b"}, {"c", "d"}, {"e", "f"}, {"g", "h"}};
 
         List<String> listOfAllChars = Arrays.stream(dataArray)
-                .flatMap(x -> Arrays.stream(x))
+                .flatMap(Arrays::stream)
                 .collect(Collectors.toList());
 
         System.out.println(listOfAllChars);
@@ -54,7 +55,7 @@ public class FlatMapTest {
     }
 
     @Test
-    public void test_int_stream() throws Throwable {
+    public void test_int_stream() {
 
         IntStream st = Arrays.stream(new int[]{1,2,3});
 
