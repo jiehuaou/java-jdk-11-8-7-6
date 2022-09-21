@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * join all address
+ */
 public class CollectToStringJoining {
     public static void main(String[] args) {
         List<UserPojo> ls = Arrays.asList(

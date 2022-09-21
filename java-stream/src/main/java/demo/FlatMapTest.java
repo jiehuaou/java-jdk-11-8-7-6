@@ -13,6 +13,9 @@ import java.util.stream.Stream;
 
 public class FlatMapTest {
 
+    /**
+     * join all element from array of array
+     */
     @Test
     public  void array_of_array1()
     {
@@ -25,9 +28,12 @@ public class FlatMapTest {
         System.out.println(listOfAllChars);
     }
 
+    /**
+     * join all element from array of array then sort
+     */
     @Test
     public  void array_of_array2() {
-        int[][] a = new int[][] {{1,2,3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] a = new int[][] {{1,2,7}, {4, 5, 6}, {3, 8, 9}};
         Arrays.stream(a)
                 .flatMapToInt(x -> Arrays.stream(x))
                 .sorted()

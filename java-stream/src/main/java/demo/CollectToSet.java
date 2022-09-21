@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * get all name from object list
+ * get all distinct name from object list
  */
 public class CollectToSet {
     public static void main(String[] args) {

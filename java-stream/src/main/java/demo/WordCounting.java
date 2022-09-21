@@ -1,5 +1,7 @@
 package demo;
 
+import org.testng.annotations.Test;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -9,17 +11,12 @@ import static java.util.stream.Collectors.*;
  * counting on each word
  */
 public class WordCounting {
-    public static void main(String[] args) {
-        sample1();
-        sample2();
-        sample3();
-        sample4();
-    }
 
     /**
      * use toMap( e->key, e->1, when_duplicated (v1,v2)->v1+v2 )
      */
-    public static void sample1() {
+    @Test
+    public void sample1() {
         List<String> ls = Arrays.asList("abc", "hello", "hello", "world");
 
         Map<String, Integer> list = ls.stream().collect(toMap(
@@ -35,7 +32,8 @@ public class WordCounting {
     /**
      * use groupingBy( e->key, e->1, reducing(...)) and reducing(0, e->1, merge(a,b)->a+b )
      */
-    public static void sample2() {
+    @Test
+    public void sample2() {
         List<String> ls = Arrays.asList("abc", "hello", "hello", "world");
 
         Map<String, Integer> list = ls.stream().collect(
@@ -52,7 +50,8 @@ public class WordCounting {
     /**
      * convert string to tuple(str, 1) first, then combine the value by key
      */
-    public static void sample3() {
+    @Test
+    public void sample3() {
         List<String> ls = Arrays.asList("abc", "hello", "hello", "world");
 
         Map<String, Integer> list = ls.stream()
@@ -69,7 +68,8 @@ public class WordCounting {
         System.out.println(list);
     }
 
-    public static void sample4() {
+    @Test
+    public void sample4() {
         List<String> ls = Arrays.asList("abc", "hello", "hello", "world");
 
         Map<String, Integer> list = ls.stream()
