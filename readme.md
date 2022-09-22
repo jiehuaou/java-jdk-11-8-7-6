@@ -225,14 +225,13 @@ define Map of Predicate\<T>, Function<T, R>, which Predicate\<T> represent the c
 and Function<T, R> provide the result logic.
 
 ```java
-public static void main(String[] args) {
+    public static void main(String[] args) {
 
         Map<Predicate<String>, Function<String, String>> rules = new HashMap<>();
-
+        
         final Predicate<String> rule1 = (String x)->x.equalsIgnoreCase("world");
         final Predicate<String> rule2 = (String x)->x.equalsIgnoreCase("hello");
         final Predicate<String> rule3 = (String x)->x.equalsIgnoreCase("web");
-
         rules.put(rule1, (String x) -> "this is world : " + x);
         rules.put(rule2, (String x) -> "this is hello : " + x);
         rules.put(rule3, (String x) -> "this is web : " + x);
@@ -245,7 +244,6 @@ public static void main(String[] args) {
 
         result = applyRule(rules, "123");
         System.out.println("result -> " + result);
-
     }
 
     public static String applyRule(Map<Predicate<String>, Function<String, String>> rules, String param) {
@@ -253,7 +251,7 @@ public static void main(String[] args) {
                 .filter(e -> e.getKey().test(param))
                 .map(e -> e.getValue().apply(param))
                 .findFirst()
-                .orElseGet(() -> "unknown : " + param);
+                .orElseGet(() -> "unknown : " + param); // default logic
     }
 ```
 
