@@ -34,6 +34,6 @@ public class StreamReplaceIfElse {
                 .filter(e -> e.getKey().test(param))
                 .map(e -> e.getValue().apply(param))
                 .findFirst()
-                .orElseGet(() -> "unknown : " + param);
+                .orElseGet(() -> "unknown : " + param); // default logic
     }
 }
