@@ -255,5 +255,7 @@ and Function<T, R> provide the result logic.
     }
 ```
 
-**filter().findFirst()**  does not scan the whole stream,  
-it will "break" as soon as the first element satisfying the predicate is found. 
+all intermediate operations like **filter()** return a lazy stream,
+
+**filter().findFirst()**  does not scan the whole stream, it will "break" 
+as soon as the first element satisfying the predicate is found. 
