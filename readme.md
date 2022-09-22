@@ -248,10 +248,10 @@ and Function<T, R> provide the result logic.
 
     public static String applyRule(Map<Predicate<String>, Function<String, String>> rules, String param) {
         return rules.entrySet().stream()
-                .filter(e -> e.getKey().test(param))
-                .map(e -> e.getValue().apply(param))
-                .findFirst()
-                .orElseGet(() -> "unknown : " + param); // default logic
+            .filter(e -> e.getKey().test(param))
+            .findFirst()
+            .map(e -> e.getValue().apply(param))
+            .orElseGet(() -> "unknown : " + param); // default logic
     }
 ```
 

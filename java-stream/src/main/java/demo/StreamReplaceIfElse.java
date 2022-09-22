@@ -32,8 +32,8 @@ public class StreamReplaceIfElse {
     public static String applyRule(Map<Predicate<String>, Function<String, String>> rules, String param) {
         return rules.entrySet().stream()
                 .filter(e -> e.getKey().test(param))
-                .map(e -> e.getValue().apply(param))
                 .findFirst()
+                .map(e -> e.getValue().apply(param))
                 .orElseGet(() -> "unknown : " + param); // default logic
     }
 }
