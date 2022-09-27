@@ -265,5 +265,18 @@ as soon as the first element satisfying the predicate is found.
 * Enables functional programming.
 * Makes the code more readable.
 * Coding less.
-* Facilitates the use of APIs and libraries.
+* make lazy call conditionally.
 * Supports parallel programming.
+
+
+```java
+    
+Configurator.setLevel("package.abc", Level.INFO);
+
+Function<Integer, String> lazy = (e)->{
+    System.out.println("construct [hello world] " + e);
+    return "hello " + "world";
+};
+log.info("--> {}", () -> lazy.apply(value));
+log.debug("--> {}", () -> lazy.apply(value)); // will not log when Level==INFO
+```
