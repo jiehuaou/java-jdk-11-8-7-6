@@ -270,7 +270,6 @@ as soon as the first element satisfying the predicate is found.
 
 
 ```java
-    
 Configurator.setLevel("package.abc", Level.INFO);
 
 Function<Integer, String> lazy = (e)->{
