@@ -272,10 +272,12 @@ as soon as the first element satisfying the predicate is found.
 ```java
 Configurator.setLevel("package.abc", Level.INFO);
 
-Function<Integer, String> lazy = (e)->{
-    System.out.println("construct [hello world] " + e);
-    return "hello " + "world";
-};
-log.info("--> {}", () -> lazy.apply(value));
-log.debug("--> {}", () -> lazy.apply(value)); // will not log when Level==INFO
+Function<String, String> func = (e)->{
+      System.out.println("construct [hello world] " + e);
+      return "hello " + "world";
+  };
+        
+log.info("-->", () -> func.apply("info + lambda"));
+log.debug("--> ", func.apply("debug + func"));        // func always called when DEBUG,INFO
+log.debug("--> ", () -> func.apply("debug + lambda")); // lambda not called when Level>DEBUG
 ```

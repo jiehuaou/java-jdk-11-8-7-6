@@ -1,14 +1,12 @@
 package abc;
 
 
-import lombok.val;
-import lombok.extern.log4j.Log4j2;
-
-import java.util.Random;
 import java.util.function.Function;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 1. make code simple
@@ -34,12 +32,14 @@ public class Lambda {
         }
         
 
-        Function<Integer, String> lazy = (e)->{
+        Function<String, String> func = (e)->{
                 System.out.println("construct [hello world] " + e);
                 return "hello " + "world";
             };
         
-        log.info("--> {}", () -> lazy.apply(value));
-        log.debug("--> {}", () -> lazy.apply(value)); // will not log when Level==INFO
+        log.info("-->", () -> func.apply("info + lambda"));
+        log.debug("--> ", func.apply("debug + not-lambda"));  // func always called when DEBUG,INFO
+        log.debug("--> ", () -> func.apply("debug + lambda")); // lambda not called when Level==INFO
+        System.out.println("");
     }
 }
