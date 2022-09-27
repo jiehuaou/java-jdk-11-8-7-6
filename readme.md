@@ -278,6 +278,10 @@ Function<String, String> func = (e)->{
   };
         
 log.info("-->", () -> func.apply("info + lambda"));
-log.debug("--> ", func.apply("debug + func"));        // func always called when DEBUG,INFO
-log.debug("--> ", () -> func.apply("debug + lambda")); // lambda not called when Level>DEBUG
+
+// bad design: func always called, level is DEBUG or INFO
+log.debug("--> ", func.apply("debug + func"));  
+
+// good design: lambda not called when Level>DEBUG
+log.debug("--> ", () -> func.apply("debug + lambda")); 
 ```
