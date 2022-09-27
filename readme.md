@@ -264,6 +264,6 @@ as soon as the first element satisfying the predicate is found.
 
 * Enables functional programming.
 * Makes the code more readable.
-* Allows getting rid of boilerplate codes.
+* Coding less.
 * Facilitates the use of APIs and libraries.
 * Supports parallel programming.
