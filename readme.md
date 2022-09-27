@@ -259,3 +259,11 @@ all intermediate operations like **filter()** return a lazy stream,
 
 **filter().findFirst()**  does not scan the whole stream, it will "break" 
 as soon as the first element satisfying the predicate is found. 
+
+## Advantages of Lambda Expression
+
+* Enables functional programming.
+* Makes the code more readable.
+* Allows getting rid of boilerplate codes.
+* Facilitates the use of APIs and libraries.
+* Supports parallel programming.

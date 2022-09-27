@@ -10,13 +10,13 @@ public class StreamReplaceIfElse {
 
         Map<Predicate<String>, Function<String, String>> rules = new HashMap<>();
 
-        final Predicate<String> rule1 = (String x)->x.equalsIgnoreCase("world");
-        final Predicate<String> rule2 = (String x)->x.equalsIgnoreCase("hello");
-        final Predicate<String> rule3 = (String x)->x.equalsIgnoreCase("web");
+        final Predicate<String> rule1 = (x)->x.equalsIgnoreCase("world");
+        final Predicate<String> rule2 = (x)->x.equalsIgnoreCase("hello");
+        final Predicate<String> rule3 = (x)->x.equalsIgnoreCase("web");
 
-        rules.put(rule1, (String x) -> "this is world : " + x);
-        rules.put(rule2, (String x) -> "this is hello : " + x);
-        rules.put(rule3, (String x) -> "this is web : " + x);
+        rules.put(rule1, (x) -> "this is world : " + x);
+        rules.put(rule2, (x) -> "this is hello : " + x);
+        rules.put(rule3, (x) -> "this is web : " + x);
 
         String result = applyRule(rules, "hello");
         System.out.println("result -> " + result);
