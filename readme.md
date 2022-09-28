@@ -301,3 +301,18 @@ System.out.println("Optional data --> " + data.orElseGet(()->func.apply("default
 // bad design: func always called when Optional is empty ot not
 System.out.println("Optional data --> " + data.orElse(func.apply("default")));    
 ```
+
+## Stream API Tutorial
+
+three parts: 
+
+* the source, 
+* intermediate operation(s)
+* a terminal operation.
+
+The correct and most convenient way to use streams is by a **stream pipeline**, which is a chain of the stream source, intermediate operations, and a terminal operation:
+
+**Intermediate** operations return a new modified stream. 
+
+**Intermediate** operations are lazy. This means that they will be invoked only if it is necessary for the terminal operation execution.
+
