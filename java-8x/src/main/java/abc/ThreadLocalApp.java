@@ -1,6 +1,5 @@
 package abc;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -56,10 +55,10 @@ public class ThreadLocalApp {
     void clean() {
         threadStore.remove();
         threadData.remove();
-        System.out.printf("%d get name after clean ==> %s \n" , currentId, threadStore.get());
-        System.out.printf("%d get data after clean ==> %s \n", currentId,  threadData.get());
+        System.out.printf("%d clean name ==> %s \n" , currentId, threadStore.get());
+        System.out.printf("%d clean data ==> %s \n", currentId,  threadData.get());
         try {
-            Thread.currentThread().sleep(1000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -67,7 +66,8 @@ public class ThreadLocalApp {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ExecutorService service = Executors.newFixedThreadPool(2);
+        System.out.println("---------start---------");
+        ExecutorService service = Executors.newFixedThreadPool(3);
 
         for (int i = 1; i <= 3; i++) {
             final int index = i;
