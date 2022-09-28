@@ -304,15 +304,36 @@ System.out.println("Optional data --> " + data.orElse(func.apply("default")));
 
 ## Stream API Tutorial
 
-three parts: 
+A Java Stream is composed of 3 main phases.
 
-* the source, 
-* intermediate operation(s)
-* a terminal operation.
+* **Source**: Data is collected from a collection, we usually call it Stream source, for example:
 
-The correct and most convenient way to use streams is by a **stream pipeline**, which is a chain of the stream source, intermediate operations, and a terminal operation:
+  * List
+  * Map
+  * Set
+  * Array, etc.
 
-**Intermediate** operations return a new modified stream. 
+* **Intermediate Operations**: Every operation in the pipeline is applied to each element in a sequence. This series of operations is called Intermediate Operations, for example:
 
-**Intermediate** operations are lazy. This means that they will be invoked only if it is necessary for the terminal operation execution.
+  * filter(predicate)
+  * sorted()
+  * distinct()
+  * map(), etc.
+
+* **Terminal**: This means we are terminating/completing the stream operation, for example:
+
+  * count()
+  * collect(), etc.
+
+## Intermediate operations
+
+Intermediate operations return a new stream.
+
+They are always **lazy**, executing an intermediate operation, such as filter() actually does not begin until the terminal operation of the pipeline is executed.
+
+Intermediate operations are further divided into **stateless and stateful** operations.
+
+**Stateless operations**: The filter and map retain no state from previously seen elements when processing a new element. Each element can be processed independently of operations on other elements. 
+
+**Stateful operations**: This may need to process the entire input before producing a result. For example, one cannot produce any results from sorting a stream until one has seen all elements of the stream. 
 
