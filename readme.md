@@ -270,7 +270,9 @@ as soon as the first element satisfying the predicate is found.
 
 
 ```java
-// conditionally log
+/**
+* conditionally log
+**/
 Configurator.setLevel("package.abc", Level.INFO);
 
 Function<String, String> func = (e)->{
@@ -288,7 +290,9 @@ log.debug("--> ", () -> func.apply("debug + lambda"));
 ```
 
 ```java
-// defer get
+/**
+* defer get
+**/
 Optional<String> data = Optional.ofNullable(value);
 
 // good design: lambda called only when Optional is empty 
