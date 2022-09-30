@@ -13,6 +13,7 @@
             <module>java-7x</module>
             <module>java-8x</module>
             <module>java-executor-service</module>
+            <module>java-data-structure</module>
             <module>java-regex</module>
             <module>java-stream</module>
             <module>java-proxy</module>

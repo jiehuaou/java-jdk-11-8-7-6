@@ -351,3 +351,18 @@ stream intermediate and terminal operations both can be short circuiting.
 
   * findFirst(), findAny(), anyMatch(Predicate), noneMatch(Predicate)
 
+## ConcurrentLinkedDeque vs LinkedBlockingDeque
+
+**LinkedBlockingQueue** is an optionally-bounded blocking queue.
+
+**ConcurrentLinkedQueue** is an unbounded, thread-safe, and non-blocking queue.
+
+### pollFirst()， addFirst()
+
+* **LinkedBlockingDeque** will lock the entire list.
+
+* **ConcurrentLinkedDeque** is more efficient as it only lock a subset of it.
+
+* **ConcurrentLinkedQueue** has additional functionality，In any producer-consumer scenario, consumers will not contend with producers; however, multiple producers will contend with one another。
+* **ConcurrentLinkedQueue** is not using locks, but CAS,
+
