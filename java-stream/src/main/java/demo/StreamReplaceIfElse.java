@@ -5,6 +5,10 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * 1) find first entry which Predicate is matched,
+ * 2) then apply the function,
+ */
 public class StreamReplaceIfElse {
     public static void main(String[] args) {
 
