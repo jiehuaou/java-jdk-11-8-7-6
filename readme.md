@@ -337,3 +337,17 @@ Intermediate operations are further divided into **stateless and stateful** oper
 
 **Stateful operations**: This may need to process the entire input before producing a result. For example, one cannot produce any results from sorting a stream until one has seen all elements of the stream. 
 
+## Short circuiting operations
+
+**short-circuited** means the remaining part is ignored.
+
+stream intermediate and terminal operations both can be short circuiting.
+
+* Intermediate short-circuiting methods
+
+  * Stream<T> limit(long maxSize)
+
+* Terminal short-circuiting methods
+
+  * findFirst(), findAny(), anyMatch(Predicate), noneMatch(Predicate)
+
