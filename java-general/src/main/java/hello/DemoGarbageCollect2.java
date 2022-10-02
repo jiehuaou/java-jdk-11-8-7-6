@@ -1,5 +1,9 @@
 package hello;
 
+/**
+ * display "demo is release 2"
+ * display "demo is release 1"
+ */
 public class DemoGarbageCollect2 {
     public static void main(String[] args) throws InterruptedException {
         DemoGarbageCollect dt = new DemoGarbageCollect();

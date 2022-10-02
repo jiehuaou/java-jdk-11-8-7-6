@@ -2,6 +2,9 @@ package hello;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * display "demo is release 2"
+ */
 public class DemoGarbageCollect {
     private Demo d ;
     void start(){
