@@ -36,7 +36,7 @@ public class BlockingProducerConsumerTest {
 
     public static class Producer implements Runnable {
         final BlockingQueue<Integer> queue;
-        final int total = 50000;
+        final int target = 50000;
 
         public Producer(BlockingQueue<Integer> queue) {
             this.queue = queue;
@@ -44,16 +44,20 @@ public class BlockingProducerConsumerTest {
 
         @Override
         public void run() {
-            for (int i = 0; i < total; i++) {
+            for (int i = 0; i < target; i++) {
                 try {
                     queue.put(1);
+                    if (0 == i%10000) {
+                        sleep(1000);
+                    }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 produce.incrementAndGet();
             }
-
-
+            sleep(1000);
+            long id = Thread.currentThread().getId();
+            System.out.println("Producer ID-" + id + "  end with ================ " + target);
         }
     }
 
@@ -68,9 +72,7 @@ public class BlockingProducerConsumerTest {
 
         @Override
         public void run() {
-//            while (produce.get()==0) {
-//                sleep(20);
-//            }
+
             long id = Thread.currentThread().getId();
             Integer data = null;
             while (true) {
@@ -99,21 +101,27 @@ public class BlockingProducerConsumerTest {
         consume.set(0);
         ExecutorService exec = Executors.newFixedThreadPool(5);
         BlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
-        exec.submit(new Producer(queue));
-        exec.submit(new Producer(queue));
-        exec.submit(new Producer(queue));
+        CompletableFuture<Void> p1 = CompletableFuture.runAsync(new Producer(queue), exec);
+        CompletableFuture<Void> p2 = CompletableFuture.runAsync(new Producer(queue), exec);
+        CompletableFuture<Void> p3 = CompletableFuture.runAsync(new Producer(queue), exec);
         exec.submit(new Consumer(queue));
         exec.submit(new Consumer(queue));
-
         exec.shutdown();
-        while (!exec.awaitTermination(2, TimeUnit.SECONDS)) {
-            System.out.println("----");
+
+
+        CompletableFuture.allOf( p1,  p2, p3).thenRun(() -> {
             try {
                 queue.put(-1);
                 queue.put(-1);
+                System.out.println("---- put end flag ---- ");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+        });
+
+        while (!exec.awaitTermination(1, TimeUnit.SECONDS)) {
+            System.out.println("----await Termination----");
+
         }
         assertEquals(produce.get(), consume.get());
         System.out.printf(" produce --> %d,   consume --> %d  \n", produce.get(), consume.get());
