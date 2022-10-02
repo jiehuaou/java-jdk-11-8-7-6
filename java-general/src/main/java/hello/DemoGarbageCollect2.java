@@ -1,6 +1,6 @@
 package hello;
 
-public class DemoTest2 {
+public class DemoGarbageCollect2 {
     public static void main(String[] args) throws InterruptedException {
         DemoGarbageCollect dt = new DemoGarbageCollect();
         dt.start();

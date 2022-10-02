@@ -12,6 +12,7 @@
         <modules>
             <module>java-7x</module>
             <module>java-8x</module>
+            <module>java-general</module>
             <module>java-executor-service</module>
             <module>java-data-structure</module>
             <module>java-lock</module>

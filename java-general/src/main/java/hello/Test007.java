@@ -24,11 +24,11 @@ public class Test007 {
      * @param args
      */
     public static void main1(String[] args) {
-        // Slower 🚶‍♂️
+        // Slower
         Set<String> set = new HashSet<>();
         set.addAll(Arrays.asList("one", "two", "three"));
 
-        // Faster 🚀
+        // Faster
         Set<String> set2 = new HashSet<>(Arrays.asList("one", "two", "three"));
 
         set2.contains("one");

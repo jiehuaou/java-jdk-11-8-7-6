@@ -15,10 +15,15 @@ public class DemoGarbageCollect {
         System.gc();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws InterruptedException{
         DemoGarbageCollect dt = new DemoGarbageCollect();
         dt.start();
         System.gc();
+        for (int i = 0; i < 5; i++) {
+            Thread.sleep(1000);
+            System.out.println("for " + i);
+            System.gc();
+        }
         System.out.println("----end----");
     }
 }
