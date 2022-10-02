@@ -13,8 +13,8 @@ public class DemoGarbageCollect {
         System.gc();
     }
     void takeOther(Demo demo){
-        demo = null;
-        demo = new Demo(2);
+        demo = null;               // nothing to do
+        demo = new Demo(2);     // demo #2 will be GC
         System.gc();
     }
 
@@ -22,7 +22,7 @@ public class DemoGarbageCollect {
         DemoGarbageCollect dt = new DemoGarbageCollect();
         dt.start();
         System.gc();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             Thread.sleep(1000);
             System.out.println("for " + i);
             System.gc();

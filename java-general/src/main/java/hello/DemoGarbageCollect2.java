@@ -11,7 +11,7 @@ public class DemoGarbageCollect2 {
         System.gc();
         dt = null;
         System.out.println("----end----");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             Thread.sleep(1000);
             System.out.println("for " + i);
             System.gc();

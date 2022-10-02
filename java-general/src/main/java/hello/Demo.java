@@ -12,10 +12,9 @@ public class Demo {
     }
 
     public static void main(String[] args)  throws InterruptedException{
-        new Demo(1);
-//        dt.start();
+        new Demo(3);
         System.gc();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             Thread.sleep(1000);
             System.out.println("for " + i);
             System.gc();
