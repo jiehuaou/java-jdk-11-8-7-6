@@ -262,6 +262,8 @@ as soon as the first element satisfying the predicate is found.
 
 ## Advantages of Lambda Expression
 
+A lambda expression is a short block of code which takes in parameters and returns a value. 
+
 * Enables functional programming.
 * Makes the code more readable.
 * Coding less.
