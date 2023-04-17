@@ -19,5 +19,6 @@
             <module>java-regex</module>
             <module>java-stream</module>
             <module>java-proxy</module>
+            <module>java-11x</module>
         </modules>
 </project>
